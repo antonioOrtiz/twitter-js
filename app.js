@@ -14,19 +14,18 @@ let locals = {
 };
 
 // NUNJUCKS DONE QUICK BABY (#EXPRESS COMBO MEAL)
-app.set('view engine', 'html'); // have res.render work with html files
-app.engine('html', nunjucks.render); // when giving html files to res.render, tell it to use nunjucks
-nunjucks.configure('views', {noCache: true}); // point nunjucks to the proper directory for templates
+app.set('view engine', 'html'); // work with html files
+app.engine('html', nunjucks.render); // use nunjucks
+nunjucks.configure('views', {noCache: true}); // point to templates
 
 //BABY GOT APPS
 app.use(function (req, res, next) {
-    // do your logging here
-    // call `next`, or else your app will be a black hole — receiving requests but never properly responding
     //console.log(Object.keys(req));
     console.log('Request recieved');
     next();
 });
 
+//HOME PAGEY
 app.get('/', function (req, res, next) {
 
   nunjucks.render('index.html', locals, function (err, output) {
