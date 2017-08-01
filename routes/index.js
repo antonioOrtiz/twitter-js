@@ -3,7 +3,6 @@ const router = express.Router();
 // could use one line instead: const router = require('express').Router();
 const tweetBank = require('../tweetBank');
 
-
 router.get('/', function (req, res) {
   let tweets = tweetBank.list();
   res.render( 'index', { tweets: tweets, showForm: true } );
@@ -25,5 +24,12 @@ router.get('/tweets/:id', function (req, res) {
   res.render('index', {tweets: list});
 })
 
+// post tweets
+router.post('/tweets', function(req, res, next) {
+  var name = req.body.name;
+  var text = req.body.text;
+  tweetBank.add(name, text);
+  res.redirect('/');
+});
 
 module.exports = router;

@@ -11,31 +11,27 @@
       <b>Your Name</b><br>
       100 followers
     </div>
-
-    <!-- DISPLAYS THE TWEET LOG -->
     <div class="col-md-9">
+      <!-- DISPLAYS THE TWEET LOG -->
       {% if showForm %}
         <form action="/tweets" method="POST">
           <label for="name_field">Name:</label>
-          <input name="name" type="text" id="name_field" />
+          <input name="name" type="text" id="name_field" value="John Doe" />
 
           <label for="text_field">Text:</label>
-          <input name="text" type="text" id="text_field" style="width: 350px;" />
+          <input name="text" type="text" id="text_field" value="IM UR PRESIDENT" style="width: 350px;" />
 
           <input type="submit" value="Submit" />
         </form>
       {% endif %}
     </div>
-
-
     <div class="col-md-9">
-
       <!-- display tweets here -->
       <!-- needs some styling -->
       {% for tweet in tweets %}
       <div class="tweetbox">
         <a href="/users/{{tweet.name}}">{{tweet.name}}</a> - {{tweet.content}}
-        <div>Key: <a href="/tweets/{{tweet.id}}">{{tweet.id}}</a></div>
+        <div>ID: <a href="/tweets/{{tweet.id}}">{{tweet.id}}</a></div>
       </div>
       {% endfor %}
 

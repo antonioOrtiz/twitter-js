@@ -3,18 +3,9 @@ const express = require( 'express' );
 const nunjucks = require( 'nunjucks' );
 const app = express();
 const routes = require('./routes');
+const bodyParser = require('body-parser');
 
-// NUNJUCKS BABY
-let locals = {
-    title: 'An Example',
-    people: [
-        { name: 'Gandalf'},
-        { name: 'Frodo' },
-        { name: 'Hermione'}
-    ]
-};
 
-app.use('/', routes);
 app.use(express.static('public'));
 
 // NUNJUCKS DONE QUICK BABY (#EXPRESS COMBO MEAL) i.e. configuration
@@ -28,6 +19,12 @@ app.use(function (req, res, next) {
     console.log('Request recieved');
     next();
 });
+
+// OUR BODY PARSER
+
+app.use(bodyParser.urlencoded({ extended: true}));
+
+app.use('/', routes);
 
 // //HOME PAGEY
 // app.get('/', function (req, res, next) {
@@ -44,6 +41,7 @@ app.use(function (req, res, next) {
 // app.get('/news', function (req, res) {
 //   res.send('Ain\'t no news');
 // });
+
 
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!')
