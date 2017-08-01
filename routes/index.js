@@ -4,13 +4,26 @@ const router = express.Router();
 const tweetBank = require('../tweetBank');
 
 
-
-
 router.get('/', function (req, res) {
   let tweets = tweetBank.list();
-  res.render( 'index', { tweets: tweets } );
+  res.render( 'index', { tweets: tweets, showForm: true } );
 });
 
+// get tweets of a specific user
+router.get('/users/:name', function (req, res) {
+  let name = req.params.name;
+  let list = tweetBank.find({name: name});
+  // console.log("List", list);
+  res.render('index', {tweets: list});
+
+});
+
+// get tweets with specific id
+router.get('/tweets/:id', function (req, res) {
+  let id = parseInt(req.params.id, 10);
+  let list = tweetBank.find({id: id});
+  res.render('index', {tweets: list});
+})
 
 
 module.exports = router;

@@ -20,7 +20,7 @@ app.use(express.static('public'));
 // NUNJUCKS DONE QUICK BABY (#EXPRESS COMBO MEAL) i.e. configuration
 app.set('view engine', 'html'); // work with html files
 app.engine('html', nunjucks.render); // use nunjucks
-nunjucks.configure('views', {noCache: true}); // point to templates
+nunjucks.configure('views', {noCache: true, showForm: true}); // point to templates
 
 //BABY GOT APPS
 app.use(function (req, res, next) {

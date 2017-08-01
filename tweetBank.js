@@ -5,7 +5,9 @@ let data = [];
 
 // TWEETBANK FUNCTIONS
 function add(name, content) {
-    data.push({ name: name, content: content });
+    // ADDED AN RANDOM ID NUMBER TO GIVE TWEETS IDs
+    let id = Math.floor(Math.random() * 100000);
+    data.push({ name: name, content: content, id: id });
 }
 
 function list() {
@@ -35,9 +37,10 @@ const getFakeTweet = function() {
     return "Fullstack Academy is " + randArrayEl(awesome_adj) + "! The instructors are just so " + randArrayEl(awesome_adj) + ". #fullstacklove #codedreams";
 };
 
+
 for (let i = 0; i < 10; i++) {
     module.exports.add(getFakeName(), getFakeTweet());
 }
 
 
-console.log(data)
+// console.log(data)
